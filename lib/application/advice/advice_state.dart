@@ -3,15 +3,15 @@ part of 'advice_bloc.dart';
 @immutable
 abstract class AdviceState {}
 
-class AdviceInitial extends AdviceState {}
+class AdviceStateInitial extends AdviceState {}
 
-class AdviceLoading extends AdviceState {}
+class AdviceStateLoading extends AdviceState {}
 
-class AdviceLoaded extends AdviceState {
+class AdviceStateLoaded extends AdviceState {
   final AdviceEntity advice;
 
-  AdviceLoaded({required this.advice});
+  AdviceStateLoaded({required this.advice});
 }
 
 
-class AdviceFailure extends AdviceState {}
+class AdviceStateFailure extends AdviceState {}
