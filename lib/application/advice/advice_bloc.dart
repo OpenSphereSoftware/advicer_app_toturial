@@ -1,17 +1,18 @@
 import 'dart:async';
 
+
+import 'package:advicer/domain/usecases/advicer_usecases.dart';
 import 'package:bloc/bloc.dart';
 import 'package:advicer/domain/entities/advice_enitity.dart';
-import 'package:advicer/domain/repositories/advice_repository.dart';
 import 'package:meta/meta.dart';
 
 part 'advice_event.dart';
 part 'advice_state.dart';
 
 class AdviceBloc extends Bloc<AdviceEvent, AdviceState> {
-  final AdviceRepository adviceRepository;
+  final AdvicerUsecases adviceUsecases;
 
-  AdviceBloc({required this.adviceRepository}) : super(AdviceStateInitial());
+  AdviceBloc({required this.adviceUsecases}) : super(AdviceStateInitial());
 
   /*Future sleep1() {
     return new Future.delayed(const Duration(seconds: 1), () => "1");
@@ -25,7 +26,7 @@ class AdviceBloc extends Bloc<AdviceEvent, AdviceState> {
       yield AdviceStateLoading();
 
       try {
-        final adviceOrFailure = await adviceRepository.getAdvice();
+        final adviceOrFailure = await adviceUsecases.getAdviceUsecase();
 
         yield adviceOrFailure.fold((failure) => AdviceStateLoading(),
             (advice) => AdviceStateLoaded(advice: advice));

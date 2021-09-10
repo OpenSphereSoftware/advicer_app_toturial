@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 abstract class AdviceRemoteDatasource {
   /// requests a random advice from free api
   /// throws a [server Exception] for all error codes
-  Future<AdviceEntity> getRandomAdvice();
+  Future<AdviceEntity> getRandomAdviceFromAPI();
 }
 
 class AdviceRemoteDatasourceImplementation implements AdviceRemoteDatasource {
@@ -18,7 +18,7 @@ class AdviceRemoteDatasourceImplementation implements AdviceRemoteDatasource {
   AdviceRemoteDatasourceImplementation({required this.client});
 
   @override
-  Future<AdviceEntity> getRandomAdvice() async {
+  Future<AdviceEntity> getRandomAdviceFromAPI() async {
     final response = await client.get(
       Uri.parse("https://api.adviceslip.com/advice"),
       headers: {
