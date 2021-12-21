@@ -1,8 +1,8 @@
-import 'package:advicer/core/failures/failures.dart';
-import 'package:advicer/domain/entities/advice_enitity.dart';
-
-import 'package:advicer/domain/repositories/advice/advice_repository.dart';
 import 'package:dartz/dartz.dart';
+
+import '../../core/failures/failures.dart';
+import '../entities/advice_enitity.dart';
+import '../repositories/advice/advice_repository.dart';
 
 class AdvicerUsecases {
   final AdviceRepository advicerRepository;

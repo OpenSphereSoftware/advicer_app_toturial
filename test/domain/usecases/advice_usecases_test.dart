@@ -19,9 +19,9 @@ void main() {
     advicerUsecases = AdvicerUsecases(advicerRepository: mockAdviceRepository);
   });
 
-  final tAdvice = AdviceEntity(advice: "tesst", id: 1);
+  final tAdvice = AdviceEntity(advice: 'test', id: 1);
 
-  test("should get advice from repository", () async {
+  test('should get advice from repository', () async {
     //arrange
     when(mockAdviceRepository.getRandomAdviceFromAPI())
         .thenAnswer((_) async => Right(tAdvice));
@@ -35,7 +35,7 @@ void main() {
     verifyNoMoreInteractions(mockAdviceRepository);
   });
 
-  test("should return same Failure as repository", () async {
+  test('should return same Failure as repository', () async {
     //arrange
     when(mockAdviceRepository.getRandomAdviceFromAPI())
         .thenAnswer((_) async => Left(ServerFailure()));

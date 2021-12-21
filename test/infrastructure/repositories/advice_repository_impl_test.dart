@@ -24,8 +24,8 @@ void main() {
         adviceRemoteDatasource: mockAdviceRemoteDatasource);
   });
 
-  group("getRandomAdviceFromAPI", () {
-    final tAdviceModel = AdviceModel(advice: "test", id: 1);
+  group('getRandomAdviceFromAPI', () {
+    final tAdviceModel = AdviceModel(advice: 'test', id: 1);
     final AdviceEntity tAdvice = tAdviceModel;
 
     test(

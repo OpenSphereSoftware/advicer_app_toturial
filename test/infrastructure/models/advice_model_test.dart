@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../fixtures/fixture_reader.dart';
 
 void main() {
-  final tAdviceModel = AdviceModel(advice: "test", id: 1);
+  final tAdviceModel = AdviceModel(advice: 'test', id: 1);
 
   test(
     'model should be a subclass of advice entity',
@@ -17,7 +17,7 @@ void main() {
     },
   );
 
-  group("fromJson factory", () {
+  group('fromJson factory', () {
     test(
       'should return a valid model when the JSON advice is correct',
       () async {

@@ -24,10 +24,10 @@ void main() {
     expect(bloc.state, equals(AdviceStateInitial()));
   });
 
-  group("RequestRandomAdvice", () {
-    final tAdvice = AdviceEntity(advice: "test", id: 1);
+  group('RequestRandomAdvice', () {
+    final tAdvice = AdviceEntity(advice: 'test', id: 1);
 
-    test("should call usecase to get random advice if event is added",
+    test('should call usecase to get random advice if event is added',
         () async {
       // arange
       when(mockAdvicerUsecases.getAdviceUsecase())
@@ -41,7 +41,7 @@ void main() {
       verify(mockAdvicerUsecases.getAdviceUsecase());
     });
 
-    test("should emmit the Loading and then the Loaded state after event add",
+    test('should emmit the Loading and then the Loaded state after event add',
         () async {
       // arange
       when(mockAdvicerUsecases.getAdviceUsecase())
@@ -53,13 +53,13 @@ void main() {
         AdviceStateLoading(),
         AdviceStateLoaded(advice: tAdvice)
       ];
-      expectLater(bloc.stream, emitsInOrder(expected));
+      await expectLater(bloc.stream, emitsInOrder(expected));
 
       // act
       bloc.add(AdviceRequested());
     });
 
-     test("should emmit the Loading and then the Error state if Usecase fails",
+     test('should emmit the Loading and then the Error state if Usecase fails',
         () async {
       // arange
       when(mockAdvicerUsecases.getAdviceUsecase())
@@ -71,12 +71,12 @@ void main() {
         AdviceStateLoading(),
         AdviceStateFailure()  //TODO failure messqge im bloc in constante packen
       ];
-      expectLater(bloc.stream, emitsInOrder(expected));
+      await expectLater(bloc.stream, emitsInOrder(expected));
 
       // act
       bloc.add(AdviceRequested());
     });
 
-    //TODO  selben test nochmal mit general failure und anderer Message
+    //  TODO(maxberktold) : selben test nochmal mit general failure und anderer Message.
   });
 }

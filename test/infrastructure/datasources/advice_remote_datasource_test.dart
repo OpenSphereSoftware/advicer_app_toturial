@@ -25,13 +25,13 @@ void main() {
   });
 
   void setUpMockHttpClientSuccess200() {
-    when(mockHttpClient.get(any, headers: anyNamed("headers")))
+    when(mockHttpClient.get(any, headers: anyNamed('headers')))
         .thenAnswer((_) async => http.Response(fixture('advice.json'), 200));
   }
 
   void setUpMockHttpClientFailure404() {
-    when(mockHttpClient.get(any, headers: anyNamed("headers")))
-        .thenAnswer((_) async => http.Response("something went wrong", 404));
+    when(mockHttpClient.get(any, headers: anyNamed('headers')))
+        .thenAnswer((_) async => http.Response('something went wrong', 404));
   }
 
   // test the get random advice from api function
@@ -40,16 +40,17 @@ void main() {
         AdviceModel.fromJson(json.decode(fixture('advice_slip.json')));
 
     test(
-      '''should perform a GET request on a URL with advice
+      '''
+      should perform a GET request on a URL with advice
        being the endpoint and with application/json header''',
       () async {
         // arrange
         setUpMockHttpClientSuccess200();
         // act
-        adviceRemoteDatasourceImplementation.getRandomAdviceFromAPI();
+        await adviceRemoteDatasourceImplementation.getRandomAdviceFromAPI();
         // assert
         verify(mockHttpClient.get(
-          Uri.parse("https://api.adviceslip.com/advice"),
+          Uri.parse('https://api.adviceslip.com/advice'),
           headers: {
             'Content-Type': 'application/json',
           },
@@ -70,15 +71,16 @@ void main() {
       },
     );
 
-     test(
+    test(
       'should throw a ServerException when the response code is 404 or other',
       () async {
         // arrange
         setUpMockHttpClientFailure404();
         // act
-        final call = adviceRemoteDatasourceImplementation.getRandomAdviceFromAPI;
+        final call =
+            adviceRemoteDatasourceImplementation.getRandomAdviceFromAPI;
         // assert
-        expect(() => call(), throwsA(TypeMatcher<ServerException>()));
+        expect(call, throwsA(const TypeMatcher<ServerException>()));
       },
     );
   });

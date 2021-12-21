@@ -1,10 +1,11 @@
 import 'dart:async';
 
-import 'package:advicer/domain/usecases/advicer_usecases.dart';
 import 'package:bloc/bloc.dart';
-import 'package:advicer/domain/entities/advice_enitity.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
+
+import '../../domain/entities/advice_enitity.dart';
+import '../../domain/usecases/advicer_usecases.dart';
 
 part 'advice_event.dart';
 part 'advice_state.dart';

@@ -1,10 +1,10 @@
-import 'package:advicer/domain/entities/advice_enitity.dart';
-import 'package:advicer/core/exceptions/exceptions.dart';
-import 'package:advicer/infrastructure/models/advice_model.dart';
-
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+
+import '../../core/exceptions/exceptions.dart';
+import '../../domain/entities/advice_enitity.dart';
+import '../models/advice_model.dart';
 
 abstract class AdviceRemoteDatasource {
   /// requests a random advice from free api
@@ -20,15 +20,15 @@ class AdviceRemoteDatasourceImplementation implements AdviceRemoteDatasource {
   @override
   Future<AdviceEntity> getRandomAdviceFromAPI() async {
     final response = await client.get(
-      Uri.parse("https://api.adviceslip.com/advice"),
+      Uri.parse('https://api.adviceslip.com/advice'),
       headers: {
         'Content-Type': 'application/json',
       },
     );
 
     if (response.statusCode == 200) {
-      final responseBody = json.decode(response.body);
-      return AdviceModel.fromJson(responseBody["slip"]);
+      final  Map responseBody = json.decode(response.body);
+      return AdviceModel.fromJson(responseBody['slip']);
     } else {
       throw ServerException();
     }

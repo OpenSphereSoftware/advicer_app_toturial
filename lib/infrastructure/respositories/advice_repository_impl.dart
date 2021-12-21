@@ -1,9 +1,10 @@
-import 'package:advicer/core/exceptions/exceptions.dart';
-import 'package:advicer/domain/entities/advice_enitity.dart';
-import 'package:advicer/core/failures/failures.dart';
-import 'package:advicer/domain/repositories/advice/advice_repository.dart';
-import 'package:advicer/infrastructure/datasources/advice_remote_datasource.dart';
 import 'package:dartz/dartz.dart';
+
+import '../../core/exceptions/exceptions.dart';
+import '../../core/failures/failures.dart';
+import '../../domain/entities/advice_enitity.dart';
+import '../../domain/repositories/advice/advice_repository.dart';
+import '../datasources/advice_remote_datasource.dart';
 
 class AdviceRepositoryImpl implements AdviceRepository {
   final AdviceRemoteDatasource adviceRemoteDatasource;

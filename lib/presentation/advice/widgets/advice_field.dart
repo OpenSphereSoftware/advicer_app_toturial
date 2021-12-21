@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AdviceField extends StatelessWidget {
-  final String advice_text;
-  const AdviceField({Key? key, required this.advice_text}) : super(key: key);
+  final String adviceText;
+  const AdviceField({Key? key, required this.adviceText}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,12 +11,12 @@ class AdviceField extends StatelessWidget {
       elevation: 20,
       borderRadius: BorderRadius.circular(15),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
         decoration: BoxDecoration(
             color: themeData.colorScheme.onPrimary,
             borderRadius: BorderRadius.circular(15)),
         child: Text(
-          '''" $advice_text "''',
+          '''" $adviceText "''',
           textAlign: TextAlign.center,
           style: themeData.textTheme.headline1!.copyWith(
               fontSize: 16,

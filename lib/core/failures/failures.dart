@@ -9,4 +9,9 @@ class ServerFailure extends Failure with EquatableMixin{
   List<Object?> get props => [];
 }
 
-class InternetFailure extends Failure  {}
+class ThemeCacheFailure extends Failure with EquatableMixin{
+  @override
+  List<Object?> get props => [];
+}
+
+

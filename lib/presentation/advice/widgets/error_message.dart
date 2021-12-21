@@ -9,16 +9,16 @@ class ErrorMessage extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(
+        const Icon(
           Icons.error,
           color: Colors.redAccent,
           size: 40,
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Text(
-          "Ups, there was something going wrong, try again!",
+          'Ups, there was something going wrong, try again!',
           textAlign: TextAlign.center,
           style: themeData.textTheme.headline1!.copyWith(
             fontSize: 18,

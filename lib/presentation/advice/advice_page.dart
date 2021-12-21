@@ -1,10 +1,13 @@
-import 'package:advicer/application/advice/advice_bloc.dart';
-import 'package:advicer/injection.dart';
-import 'package:advicer/presentation/advice/widgets/advice_field.dart';
-import 'package:advicer/presentation/advice/widgets/custom_button.dart';
-import 'package:advicer/presentation/advice/widgets/error_message.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
+
+import '../../application/advice/advice_bloc.dart';
+import '../../application/theme/theme_service.dart';
+import '../../injection.dart';
+import 'widgets/advice_field.dart';
+import 'widgets/custom_button.dart';
+import 'widgets/error_message.dart';
 
 class AdvicePage extends StatelessWidget {
   const AdvicePage({Key? key}) : super(key: key);
@@ -15,10 +18,17 @@ class AdvicePage extends StatelessWidget {
     final themeData = Theme.of(context);
     return Scaffold(
         appBar: AppBar(
+          actions: [
+            Switch(
+                value: Provider.of<ThemeService>(context).isDarkModeOn,
+                onChanged: (_) {
+                  Provider.of<ThemeService>(context, listen:  false).toggleTheme();
+                })
+          ],
           centerTitle: true,
-          backgroundColor: themeData.appBarTheme.color,
+          backgroundColor: themeData.appBarTheme.backgroundColor,
           title: Text(
-            "Advicer",
+            'Advicer',
             style: themeData.textTheme.headline1!
                 .copyWith(fontSize: 20, fontWeight: FontWeight.bold),
           ),
@@ -36,7 +46,7 @@ class AdvicePage extends StatelessWidget {
                         return Expanded(
                           child: Center(
                               child: Text(
-                            "Your Advice is Waiting for you!",
+                            'Your Advice is Waiting for you!',
                             textAlign: TextAlign.center,
                             style: themeData.textTheme.headline1!.copyWith(
                               fontSize: 18,
@@ -55,15 +65,15 @@ class AdvicePage extends StatelessWidget {
                         return Expanded(
                           child: Center(
                             child: AdviceField(
-                                advice_text: adviceState.advice.advice),
+                                adviceText: adviceState.advice.advice),
                           ),
                         );
                       } else if (adviceState is AdviceStateFailure) {
-                        return Expanded(
+                        return  const Expanded(
                           child: Center(child: ErrorMessage()),
                         );
                       }
-                      return Placeholder();
+                      return const Placeholder();
                     }),
                 SizedBox(
                     height: 200,
