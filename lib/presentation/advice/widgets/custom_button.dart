@@ -11,6 +11,7 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeData = Theme.of(context);
     return InkResponse(
+      key: const Key("customButton"),
       onTap: onPressed,
       child: Material(
         elevation: 16,

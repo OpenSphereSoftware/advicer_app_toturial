@@ -1,4 +1,4 @@
-import 'package:advicer/application/advice/advice_bloc.dart';
+import 'package:advicer/application/advicer/advicer_bloc.dart';
 import 'package:advicer/core/failures/failures.dart';
 import 'package:advicer/domain/entities/advice_enitity.dart';
 import 'package:advicer/domain/usecases/advicer_usecases.dart';
@@ -11,12 +11,12 @@ import 'advice_bloc_test.mocks.dart';
 
 @GenerateMocks([AdvicerUsecases])
 void main() {
-  late AdviceBloc bloc;
+  late AdvicerBloc bloc;
   late MockAdvicerUsecases mockAdvicerUsecases;
 
   setUp(() {
     mockAdvicerUsecases = MockAdvicerUsecases();
-    bloc = AdviceBloc(adviceUsecases: mockAdvicerUsecases);
+    bloc = AdvicerBloc(adviceUsecases: mockAdvicerUsecases);
   });
 
   test('initialState should be AdviceStateInitial', () {
