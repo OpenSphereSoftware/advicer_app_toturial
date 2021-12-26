@@ -1,3 +1,5 @@
+import 'package:advicer/application/cubit/advicer_cubit_cubit.dart';
+import 'package:advicer/injection.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:provider/provider.dart';
@@ -15,33 +17,53 @@ Future initializeApp({required Client client}) async {
 
 Future main() async {
   await initializeApp(client: Client());
-  runApp(const MyApp());
+  runApp(const MyAppRoot());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MyAppRoot extends StatelessWidget {
+  const MyAppRoot({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InjectProviders(
+      themeService: di.sl<ThemeService>(),
+      child: AppConfig(
+        home: AdvicePage(
+          adviceCubit: sl<AdvicerCubitCubit>(),
+        ),
+      ),
+    );
+  }
+}
+
+class InjectProviders extends StatelessWidget {
+  final Widget child;
+  final ThemeService themeService;
+  const InjectProviders(
+      {Key? key, required this.child, required this.themeService})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (context) => di.sl<ThemeService>(),
-        child: const MaterialAppi());
+        create: (context) => themeService, child: child);
   }
 }
 
-class MaterialAppi extends StatelessWidget {
-  const MaterialAppi({Key? key}) : super(key: key);
+class AppConfig extends StatelessWidget {
+  final Widget home;
+  const AppConfig({Key? key, required this.home}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Consumer<ThemeService>(builder: (context, themeService, child) {
       return MaterialApp(
-        title: 'Crypto App',
-        theme: AppTheme.lightTheme,
-        darkTheme: AppTheme.darkTheme,
-        themeMode: themeService.isDarkModeOn ? ThemeMode.dark : ThemeMode.light,
-        home: const AdvicePage(),
-      );
+          title: 'Crypto App',
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          themeMode:
+              themeService.isDarkModeOn ? ThemeMode.dark : ThemeMode.light,
+          home: home);
     });
   }
 }

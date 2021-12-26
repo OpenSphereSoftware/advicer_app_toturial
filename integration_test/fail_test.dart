@@ -31,7 +31,7 @@ main() {
 
     // init
     await app.initializeApp(client: client);
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(const MyAppRoot());
     await tester.pumpAndSettle();
 
     await Future.delayed(const Duration(seconds: 2), () {});

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../domain/usecases/theme_usecases.dart';
 
 abstract class ThemeService extends ChangeNotifier {
-  late bool isDarkModeOn;
+  bool isDarkModeOn = true;
   Future<void> toggleTheme();
   Future<void> setTheme({required bool darkMode});
   Future<void> init();

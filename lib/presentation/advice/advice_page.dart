@@ -11,7 +11,8 @@ import 'widgets/custom_button.dart';
 import 'widgets/error_message.dart';
 
 class AdvicePage extends StatelessWidget {
-  const AdvicePage({Key? key}) : super(key: key);
+  final AdvicerCubitCubit adviceCubit;
+  const AdvicePage({Key? key, required this.adviceCubit}) : super(key: key);
 
   static const String startText = 'Your Advice is Waiting for you!';
   static const String appbarText = 'Advicer';
@@ -23,8 +24,7 @@ class AdvicePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final adviceCubit = sl<AdvicerCubitCubit>();
-    //final adviceBloc = sl<AdvicerBloc>();
+   // final adviceCubit = sl<AdvicerCubitCubit>();
     final themeData = Theme.of(context);
     return Scaffold(
         backgroundColor: themeData.scaffoldBackgroundColor,

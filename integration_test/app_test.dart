@@ -21,9 +21,6 @@ void main() {
   when(client.get(any)).thenAnswer((invocation) => Future.value(
       Response('{"slip": { "id": 100, "advice": "Test Advice"}}', 200)));
 
-  
-  
-
   testWidgets(
       "started the app and then taps on button to get Advice - wtih success from network"
       "then waits 2s and changes the theme of the ui from dark to light",
@@ -40,7 +37,7 @@ void main() {
 
     // init
     await app.initializeApp(client: client);
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(const MyAppRoot());
     await tester.pumpAndSettle();
     await Future.delayed(const Duration(seconds: 2), () {});
 
